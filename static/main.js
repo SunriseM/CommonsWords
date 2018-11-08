@@ -9,7 +9,7 @@ const fill = d3.scale.category20b();
 
 let w = getWidth();
 let h = window.innerHeight;
-let max, fontSize, layout, svg, cloud;
+let max, fontSize, layout, svg, cloud, words;
 
 function getWidth() {
   return resultCloud.offsetWidth;
@@ -25,9 +25,9 @@ function createWordsCloud(url) {
     .then(json => {
       clearResult();
 
-      json.words = json.words.sort((a, b) => b.size - a.size);
+      words = json.words.sort((a, b) => b.size - a.size);
 
-      layout = getLayout(json.words);
+      layout = getLayout();
       svg = getSVG();
       cloud = cloudResult(svg);
 
@@ -38,7 +38,7 @@ function createWordsCloud(url) {
       if (json.title)
         addLink(`https://en.wikipedia.org/wiki/${json.title}`, json.title);
 
-      update(json.words);
+      update();
     });
 }
 
@@ -59,7 +59,7 @@ function addLink(url, text) {
   resultTitle.appendChild(a);
 }
 
-function getLayout(words) {
+function getLayout() {
   return d3.layout
     .cloud()
     .timeInterval(Infinity)
@@ -148,13 +148,10 @@ function draw(data, bounds) {
 
   cloud
     .transition()
-    .attr(
-      "transform",
-      "translate(" + [w >> 1, h >> 1] + ")scale(" + scale + ")"
-    );
+    .attr("transform", `translate(${[w >> 1, h >> 1]}) scale(${scale})`);
 }
 
-function update(words) {
+function update() {
   layout.font("impact").spiral("archimedean");
   fontSize = d3.scale["sqrt"]().range([10, 100]);
 
