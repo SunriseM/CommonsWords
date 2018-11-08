@@ -2,6 +2,8 @@ const urlInput = document.getElementById("url-input");
 const urlInputSubmit = document.getElementById("url-input-sbt");
 const result = document.getElementById("result");
 const resultCloud = document.getElementById("result-cloud");
+const randomWiki = document.getElementById("rndwiki");
+
 const fill = d3.scale.category20b();
 
 let w = getWidth();
@@ -12,13 +14,17 @@ function getWidth() {
   return resultCloud.offsetWidth;
 }
 
-urlInputSubmit.onclick = () => {
-  const url = encodeURI(urlInput.value);
+urlInputSubmit.onclick = () =>
+  createWordsCloud(`api/1/get_words?url=${encodeURI(urlInput.value)}`);
+randomWiki.onclick = () => createWordsCloud("api/1/rndwiki");
 
-  fetch(`api/1/get_words?url=${url}`)
+function createWordsCloud(url) {
+  fetch(url)
     .then(res => res.json())
     .then(json => {
       clearResult();
+
+      json.words = json.words.sort((a, b) => b.size - a.size);
 
       layout = getLayout(json.words);
       svg = getSVG();
@@ -28,7 +34,7 @@ urlInputSubmit.onclick = () => {
 
       update(json.words);
     });
-};
+}
 
 function clearResult() {
   resultCloud.innerHTML = "";
