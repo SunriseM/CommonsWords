@@ -19,3 +19,8 @@ input {
   text-align: center;
   color: white;
 }
+
+#result {
+  background: #000;
+  border-radius: 4px;
+}
