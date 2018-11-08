@@ -16,31 +16,15 @@
     </div>
   </label>
 
-  <section id="result"><section id="result-cloud"></section></section>
+  <section id="result">
+    <section id="result-cloud"></section>
+    <section id="result-table"></section>
+    <section id="result-graph"></section>
+  </section>
 
-  <!--
-    <section class="separator"> OR </section>
+  <p class="separator">OR</p>
 
-
-
-
-    <label>
-
-
-
-
-        Enter the Website URL where you want to get the common words
-
-
-
-
-        <input id="url-input" type="text" placeholder="www.example.com" />
-
-
-
-
-      </label>
-  -->
+  <button class="btn btn-primary" id="rndwiki">Random Wikipedia Page</button>
 </main>
 
 <script src="{{ url_for('static', filename='main.js') }}"></script>
