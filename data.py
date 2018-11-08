@@ -6,6 +6,16 @@ def get_content(url: str):
   if not url.startswith('http'):
     url = 'http://' + url
   page = requests.get(url).text
-  soup = BeautifulSoup(page, 'html.parser')
-  return ''.join(soup.findAll(text=True))
+  soup = BeautifulSoup(page)
+
+  soup = soup.body
+
+  print(soup)
+
+  tags = soup.findAll(['script', 'style'])
+  for match in tags:
+      match.decompose()
+
+
+  return ''.join(soup.get_text())
   
