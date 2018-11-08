@@ -1,6 +1,6 @@
 def words_count(string: str) -> dict:
   words_count = dict()
-  words = string.split(" ")
+  words = string.split()
 
   for word in words:
     if word not in words_count:
