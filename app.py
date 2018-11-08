@@ -16,8 +16,8 @@ def get_words():
 
 @app.route("/api/1/rndwiki", methods=['GET'])
 def get_wiki():
-  string = get_random_wiki()
-  return jsonify({'words': words_count(string)})
+  data = get_random_wiki()
+  return jsonify({'words': words_count(data['words']), 'title': data['title']})
 	
 if __name__ == "__main__":
 	app.run()
