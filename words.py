@@ -1,6 +1,11 @@
+import re
+
 def words_count(string: str) -> dict:
   words_count = dict()
-  words = string.split()
+
+  ## words = string.split()
+
+  words = re.split('[\W_]', string)
 
   for word in words:
     if word not in words_count:
