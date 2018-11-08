@@ -1,0 +1,34 @@
+<title>Common Words</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<nav><h1>Common Words</h1></nav>
+
+<main>
+  <label>
+    <span>Enter the Website URL where you want to get the common words</span>
+
+    <div class="input-wrapper">
+      <input id="url-input" type="text" placeholder="www.example.com" />
+      <button id="url-input-sbt" class="btn">Get em</button>
+    </div>
+  </label>
+
+  <!--
+    <section class="separator"> OR </section>
+
+
+    <label>
+
+
+        Enter the Website URL where you want to get the common words
+
+
+        <input id="url-input" type="text" placeholder="www.example.com" />
+
+
+      </label>
+  -->
+</main>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>

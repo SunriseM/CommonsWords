@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from words import words_count
 from data import get_content
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-  return "Hello World!"
+  return render_template('index.html')
 
 @app.route("/api/1/get_words", methods=['GET'])
 def get_words():
