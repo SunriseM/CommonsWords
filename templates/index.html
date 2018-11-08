@@ -1,6 +1,8 @@
 <title>Common Words</title>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
 
 <nav><h1>Common Words</h1></nav>
 
@@ -14,17 +16,27 @@
     </div>
   </label>
 
+  <section id="result"><section id="result-cloud"></section></section>
+
   <!--
     <section class="separator"> OR </section>
+
+
 
 
     <label>
 
 
+
+
         Enter the Website URL where you want to get the common words
 
 
+
+
         <input id="url-input" type="text" placeholder="www.example.com" />
+
+
 
 
       </label>
