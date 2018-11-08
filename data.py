@@ -31,10 +31,11 @@ def get_random_wiki():
   json = get_html(RANDOM_WIKI).json()
 
   article_id = list(json['query']['pages'].keys())[0]
+  article = json['query']['pages'][article_id]
 
-  markdown_text = json['query']['pages'][article_id]['revisions'][0]['*']
+  markdown_text = article['revisions'][0]['*']
   html = markdown.markdown(markdown_text)
-  return parse_html(html, body=False)
+  return {'words': parse_html(html, body=False), 'title': article['title']}
 
 
   
