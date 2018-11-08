@@ -71,3 +71,10 @@ input {
   top: 32%;
   right: -15%;
 }
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
+  margin-bottom: 1em;
+}

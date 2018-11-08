@@ -1,6 +1,7 @@
 const urlInput = document.getElementById("url-input");
 const urlInputSubmit = document.getElementById("url-input-sbt");
 const result = document.getElementById("result");
+const resultTitle = document.getElementById("result-title");
 const resultCloud = document.getElementById("result-cloud");
 const randomWiki = document.getElementById("rndwiki");
 
@@ -31,6 +32,11 @@ function createWordsCloud(url) {
       cloud = cloudResult(svg);
 
       result.style.padding = "2em";
+      resultTitle.style.paddingBottom = "1em";
+      resultTitle.style.borderBottom = "1px solid #2a2a2a";
+
+      if (json.title)
+        addLink(`https://en.wikipedia.org/wiki/${json.title}`, json.title);
 
       update(json.words);
     });
@@ -38,7 +44,19 @@ function createWordsCloud(url) {
 
 function clearResult() {
   resultCloud.innerHTML = "";
+  resultTitle.innerHTML = "";
   result.style.padding = "0";
+  resultTitle.style.paddingBottom = "0";
+  resultTitle.style.borderBottom = "unset";
+}
+
+function addLink(url, text) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
+  a.innerText = text;
+
+  resultTitle.appendChild(a);
 }
 
 function getLayout(words) {
