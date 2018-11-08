@@ -10,8 +10,6 @@ def get_content(url: str):
 
   soup = soup.body
 
-  print(soup)
-
   tags = soup.findAll(['script', 'style'])
   for match in tags:
       match.decompose()
