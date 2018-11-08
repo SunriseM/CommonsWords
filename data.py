@@ -1,19 +1,40 @@
 from bs4 import BeautifulSoup
 import requests
 import urllib
+import markdown
 
-def get_content(url: str):
+RANDOM_WIKI = "https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1"
+
+def get_html(url: str):
   if not url.startswith('http'):
     url = 'http://' + url
-  page = requests.get(url).text
-  soup = BeautifulSoup(page)
 
-  soup = soup.body
+  return requests.get(url)
+
+def parse_html(html: str, body: bool):
+  soup = BeautifulSoup(html)
+
+  if body:
+    soup = soup.body
 
   tags = soup.findAll(['script', 'style'])
   for match in tags:
       match.decompose()
 
-
   return ''.join(soup.get_text())
+
+def get_content(url: str):
+  page = get_html(url).text
+  return parse_html(page, body=True)
+
+def get_random_wiki():
+  json = get_html(RANDOM_WIKI).json()
+
+  article_id = list(json['query']['pages'].keys())[0]
+
+  markdown_text = json['query']['pages'][article_id]['revisions'][0]['*']
+  html = markdown.markdown(markdown_text)
+  return parse_html(html, body=False)
+
+
   
