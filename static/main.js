@@ -78,7 +78,7 @@ class CommonWords {
    cloudResult() {
       return this.svg
          .append("g")
-         .attr("transform", "translate(" + [this.width >> 1, this.height >> 1] + ")");
+         .attr("transform", `translate(${[this.width >> 1, this.height >> 1]})`);
    }
 
 
@@ -104,7 +104,7 @@ class CommonWords {
          .transition()
          .duration(1000)
          .attr("transform", function (d) {
-            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            return `translate(${[d.x, d.y]}) rotate(${d.rotate})`;
          })
          .style("font-size", function (d) {
             return d.size + "px";
@@ -115,7 +115,7 @@ class CommonWords {
          .append("text")
          .attr("text-anchor", "middle")
          .attr("transform", function (d) {
-            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            return `translate(${[d.x, d.y]}) rotate(${d.rotate})`;
          })
          .style("font-size", function (d) {
             return d.size + "px";
