@@ -3,9 +3,10 @@ const urlInputSubmit = document.getElementById("url-input-sbt");
 const result = document.getElementById("result");
 const resultTitle = document.getElementById("result-title");
 const resultCloud = document.getElementById("result-cloud");
-const randomWiki = document.getElementById("rndwiki");
+const randomWiki = document.getElementById("rndwiki")
 
-const fill = d3.scale.category20b();
+const fill = d3.scale.category20b()
+
 class CommonWords {
    constructor({
       width,
